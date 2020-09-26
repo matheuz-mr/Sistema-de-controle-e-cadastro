@@ -68,6 +68,7 @@ int main(){
     printf("\n\n\n\n                            _______CADASTRO_______ ");
     printf("\n\n                            1 - CADASTRAR");
     printf("\n                            2 - BUSCA");
+    printf("\n                            3 - EXCLUIR CADASTRO");
     printf("\n                            3 - VOLTAR");
     printf("\n                            ______________________");
     printf("\n\n                            DIGITE UMA OPÇÃO: ");
@@ -80,6 +81,9 @@ int main(){
          goto busca;
          break;
        case 3:
+         goto excluird;
+         break;
+       case 4:
          goto menu;
          break;
        default:
@@ -145,7 +149,6 @@ int main(){
         printf("%s", f);
     }
         fclose(file);
-
     //LOOP
     int opbus;
     printf("\n\n________________________________________________________________________________");
@@ -158,9 +161,50 @@ int main(){
     default:
       goto menu;
       break;
+    }
+      //EXCLUIR CADASTRO
+      excluird:
+      system("cls");
+      int del;
+      FILE *fp;
+      char nome[100];
+       printf("\n\n________________________________EXCLUIR DADOS____________________________________");
+        printf("\n\n                         DIGITE O NOME PARA DELETAR: ");
+        gets(nome);
+        gets(nome);
 
+      fp = fopen(nome, "w");
+
+      fprintf(fp, "%s", " ");
+      fclose(fp);
+
+      del = remove(nome);
+
+      if(del == 0) {
+      printf("                         DADOS DELETADOS COM SUCESSO");
+      } else {
+      printf("                         ERRO, DADOS NAO EXISTENTE");
+      }
+       //LOOP EXCLUIR
+      int opdel;
+       printf("\n\n________________________________________________________________________________");
+       printf("\n\n               DIGITE 1 PARA VOLTAR: ");
+       scanf(" %c", &opdel);
+      switch(opdel){
+      case 1:
+        goto menu;
+        break;
+      default:
+        goto menu;
+        break;
+    }
 //=============================================================================
 //                                 AGENDAMENTO
 //=============================================================================
+
+
+
+
+
 }
 
