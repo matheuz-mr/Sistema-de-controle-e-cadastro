@@ -48,6 +48,7 @@ int main(){
        goto submenu;
        break;
      case 2:
+       goto subagen;
        break;
      case 3:
        break;
@@ -168,8 +169,10 @@ int main(){
       int del;
       FILE *fp;
       char nome[100];
-       printf("\n\n________________________________EXCLUIR DADOS____________________________________");
-        printf("\n\n                         DIGITE O NOME PARA DELETAR: ");
+        printf("\n\n________________________________EXCLUIR DADOS____________________________________");
+        printf("\n              -NOME  E DATA PARA CANCELAR AGENDAMENTO ");
+        printf("\n              -APENAS O NOME PARA EXCLUIR CADASTRO ");
+        printf("\n\n               DIGITE O NOME PARA DELETAR: ");
         gets(nome);
         gets(nome);
 
@@ -201,9 +204,55 @@ int main(){
 //=============================================================================
 //                                 AGENDAMENTO
 //=============================================================================
+    subagen:
+    system("cls");
+    int opagen;
+    printf("\n\n\n\n                            _______AGENDAMENTO_______ ");
+    printf("\n\n                            1 - AGENDAR");
+    printf("\n                            2 - BUSCA");
+    printf("\n                            3 - CANCELAR AGENDAMENTO");
+    printf("\n                            3 - VOLTAR");
+    printf("\n                            _________________________");
+    printf("\n\n                             DIGITE UMA OPÇÃO: ");
+    scanf("%i", &opagen);
+    switch(opagen){
+      case 1:
+    //AGENDAMENTO
+    system("cls");
+    FILE *file;
+    char nd[100], hr[12];
 
+    printf("\n\n___________________________________AGENDAR______________________________________");
+       //NOME E DATA
+       printf("\n\n                  NOME E DATA: ");
+       gets(nd);
+       gets(nd);
+       file = fopen(nd, "wb");
 
+       fprintf(file,"\n               NOME E DATA: ");
+       fprintf(file, nd);
+       //HORARIO
+       printf("\n                  HORARIO: ");
+       gets(hr);
+       fprintf(file,"\n               HORARIO: ");
+       fprintf(file, hr);
 
+       fclose(file);
+       sleep(1);
+       goto submenu;
+        break;
+      case 2:
+        break;
+      case 3:
+        sleep(3);
+        system("color f0");
+        goto excluird;
+        break;
+      case 4:
+        break;
+      default:
+        break;
+    }
 
 
 }
