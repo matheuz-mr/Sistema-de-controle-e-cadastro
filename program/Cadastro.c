@@ -10,13 +10,14 @@ int main(){
      login:
      system("color 0f");
      system("cls");
-     int a = 12345;
-     printf("\n\n\n\n\n\n\n                               ______LOGIN______");
-     printf("\n\n                               USUARIO:UNIDADE_1");
-     printf("\n                               SENHA: ");
-     scanf("%i", &a);
+     int senha;
 
-     if (a != 12345){
+     printf("\n\n\n\n\n\n\n                               ______LOGIN______");
+     printf("\n\n                               USUARIO: admin");
+     printf("\n                               SENHA: ");
+     scanf("%i", &senha);
+
+     if (senha != 12345){
        system("cls");
        system("color 4f");
        printf("\n\n\n\n\n\n\n\n\n                               SENHA INCORRETA");
@@ -136,33 +137,36 @@ int main(){
        busca:
        system("cls");
        printf("\n\n_____________________________________BUSCA______________________________________");
-       printf("\n\n               DIGITE O NOME: ");
+       printf("\n\n              AGENDAMENTO - NOME  E DATA ");
+       printf("\n              CADASTRO - APENAS O NOME ");
+       printf("\n\n              BUSCA: ");
        gets(bus);
        gets(bus);
        file = fopen(bus, "r");
         //LEITURA DO ARQUIVO
+        int opbusca;
         if (file == NULL){
-        printf("\n\n               NÃO ENCONTRADO\n");
-        sleep(2);
-        goto busca;
+        printf("\n\n               NÃO ENCONTRADO");
+
     }
         while(fgets(f, 100, file) != NULL){
         printf("%s", f);
     }
-        fclose(file);
-    //LOOP
-    int opbus;
     printf("\n\n________________________________________________________________________________");
-    printf("\n\n               DIGITE 1 PARA VOLTAR: ");
-    scanf(" %c", &opbus);
-    switch(opbus){
-    case 1:
-      goto menu;
-      break;
-    default:
-      goto menu;
-      break;
-    }
+        printf("\n               DIGITE 1 PARA VOLTAR OU 2 PARA NOVA BUSCA ");
+        scanf("%i", &opbusca);
+        switch(opbusca){
+         case 1:
+           goto menu;
+         break;
+         case 2:
+           goto busca;
+         break;
+         default:
+           goto menu;
+         break;
+        }
+        fclose(file);
       //EXCLUIR CADASTRO
       excluird:
       system("cls");
@@ -170,8 +174,8 @@ int main(){
       FILE *fp;
       char nome[100];
         printf("\n\n________________________________EXCLUIR DADOS____________________________________");
-        printf("\n              -NOME  E DATA PARA CANCELAR AGENDAMENTO ");
-        printf("\n              -APENAS O NOME PARA EXCLUIR CADASTRO ");
+        printf("\n              AGENDAMENTO - NOME  E DATA ");
+        printf("\n              CADASTRO - APENAS O NOME ");
         printf("\n\n               DIGITE O NOME PARA DELETAR: ");
         gets(nome);
         gets(nome);
@@ -211,15 +215,32 @@ int main(){
     printf("\n\n                            1 - AGENDAR");
     printf("\n                            2 - BUSCA");
     printf("\n                            3 - CANCELAR AGENDAMENTO");
-    printf("\n                            3 - VOLTAR");
+    printf("\n                            4 - VOLTAR");
     printf("\n                            _________________________");
     printf("\n\n                             DIGITE UMA OPÇÃO: ");
     scanf("%i", &opagen);
     switch(opagen){
       case 1:
+        goto agendar;
+        break;
+      case 2:
+        goto busca;
+        break;
+      case 3:
+        goto excluird;
+        break;
+      case 4:
+        goto menu;
+        break;
+      default:
+        printf("\n               ESCOLHA UMA OPÇÃO VALIDA");
+        goto subagen;
+        break;
+    }
     //AGENDAMENTO
+    agendar:
     system("cls");
-    FILE *file;
+    FILE *a;
     char nd[100], hr[12];
 
     printf("\n\n___________________________________AGENDAR______________________________________");
@@ -227,33 +248,22 @@ int main(){
        printf("\n\n                  NOME E DATA: ");
        gets(nd);
        gets(nd);
-       file = fopen(nd, "wb");
+       a = fopen(nd, "wb");
 
-       fprintf(file,"\n               NOME E DATA: ");
-       fprintf(file, nd);
+       fprintf(a,"\n               NOME E DATA: ");
+       fprintf(a, nd);
        //HORARIO
        printf("\n                  HORARIO: ");
        gets(hr);
-       fprintf(file,"\n               HORARIO: ");
-       fprintf(file, hr);
+       fprintf(a,"\n               HORARIO: ");
+       fprintf(a, hr);
 
-       fclose(file);
+       fclose(a);
        sleep(1);
        goto submenu;
-        break;
-      case 2:
-        break;
-      case 3:
-        sleep(3);
-        system("color f0");
-        goto excluird;
-        break;
-      case 4:
-        break;
-      default:
-        break;
-    }
 
-
+//=============================================================================
+//                            RELATORIO MEDICOS
+//=============================================================================
 }
 
