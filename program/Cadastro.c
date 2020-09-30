@@ -103,31 +103,30 @@ int main(){
 
     printf("\n\n___________________________________CADASTRAR____________________________________");
        //NOME
-       printf("\n\n                  NOME: ");
-       gets(n);
-       gets(n);
+        printf("\n\n                  NOME: ");
+       scanf("%s", &n);
        file = fopen(n, "wb");
 
        fprintf(file,"\n               NOME: ");
        fprintf(file, n);
        //CPF
        printf("\n                  CPF: ");
-       gets(cpf);
+       scanf("%s", &cpf);
        fprintf(file,"\n               CPF: ");
        fprintf(file, cpf);
        //TELEFONE
        printf("\n                  TELEFONE: ");
-       gets(cell);
+       scanf("%s", &cell);
        fprintf(file,"\n               TELEFONE: ");
        fprintf(file, cell);
        //EMAIL
        printf("\n                  EMAIL: ");
-       gets(email);
+       scanf("%s", &email);
        fprintf(file,"\n               EMAIL: ");
        fprintf(file, email);
        //ENDEREÇO
        printf("\n                  ENDEREÇO: ");
-       gets(end);
+       scanf("%s", &end);
        fprintf(file,"\n               ENDEREÇO: ");
        fprintf(file, end);
        fclose(file);
@@ -141,8 +140,7 @@ int main(){
        printf("\n\n              AGENDAMENTO - NOME  E DATA ");
        printf("\n              CADASTRO - APENAS O NOME ");
        printf("\n\n              BUSCA: ");
-       gets(bus);
-       gets(bus);
+       scanf("%s", &bus);
        file = fopen(bus, "r");
         //LEITURA DO ARQUIVO
         int opbusca;
@@ -179,8 +177,7 @@ int main(){
         printf("\n              CADASTRO - APENAS O NOME ");
         printf("\n              RELATORIO - NOME + 'R'");
         printf("\n\n              DIGITE O NOME PARA DELETAR: ");
-        gets(nome);
-        gets(nome);
+        scanf("%s", &nome);
 
       fp = fopen(nome, "w");
 
@@ -189,10 +186,10 @@ int main(){
 
       del = remove(nome);
 
-      if(del == 0) {
-      printf("                         DADOS DELETADOS COM SUCESSO");
+      if(del == NULL) {
+      printf("\n              DADOS DELETADOS COM SUCESSO");
       } else {
-      printf("                         ERRO, DADOS NAO EXISTENTE");
+      printf("\n              ERRO, DADOS NAO EXISTENTE");
       }
        //LOOP EXCLUIR
       int opdel;
@@ -248,15 +245,14 @@ int main(){
     printf("\n\n___________________________________AGENDAR______________________________________");
        //NOME E DATA
        printf("\n\n                  NOME E DATA: ");
-       gets(nd);
-       gets(nd);
+       scanf("%s", &nd);
        a = fopen(nd, "wb");
 
        fprintf(a,"\n               NOME E DATA: ");
        fprintf(a, nd);
        //HORARIO
        printf("\n                  HORARIO: ");
-       gets(hr);
+       scanf("%s", &hr);
        fprintf(a,"\n               HORARIO: ");
        fprintf(a, hr);
 
@@ -300,20 +296,19 @@ int main(){
     relatorios:
     system("cls");
     FILE *rel;
-    char r[100], re[12];
+    char r[50], re[10000];
 
     printf("\n\n______________________________RELATORIOS MEDICOS________________________________");
        //NOME
        printf("\n\n  NOME COM UM 'R' NO FINAL: ");
-       gets(r);
-       gets(r);
+       scanf("%s", &r);
        rel = fopen(r, "wb");
 
        fprintf(rel,"\n               NOME: ");
        fprintf(rel, r);
        //RELATORIO
        printf("\n  - ");
-       gets(re);
+       scanf("%s", &re);
        fprintf(rel,"\n               - ");
        fprintf(rel, re);
 
