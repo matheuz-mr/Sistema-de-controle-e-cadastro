@@ -3,98 +3,75 @@
 
 int main(){
     setlocale(LC_ALL, "");
-    system("mode con:cols=80 lines=25");
 //============================================================================================================================================================
 //                                                                           LOGIN
 //============================================================================================================================================================
-     login:
-     system("color 0f");
+     user:
+     system("mode con:cols=80");
      system("cls");
-     int senha;
-
-     printf("\n\n\n\n\n\n\n                               ______LOGIN______");
-     printf("\n\n                               USUARIO: admin");
+     char user[4],senha[4];
+     printf("\n\n\n\n\n\n\n                               ______LOGIN______"
+            "\n\n                               USUARIO: ");
+     scanf("%s", &user);
+      if(strcmp(user, "admin") == 0){ goto senha; }
+        else{  system("color 4f", "cls");
+               printf("\n\n\n\n\n\n\n\n\n                               SENHA INCORRETA");
+               sleep(1);
+               goto user; }
+     senha:
      printf("\n                               SENHA: ");
      scanf("%i", &senha);
-
-     if (senha != 12345){
-       system("cls");
-       system("color 4f");
-       printf("\n\n\n\n\n\n\n\n\n                               SENHA INCORRETA");
-       sleep(1);
-       goto login;
-     }
-     else{
-       goto menu;
-     }
+      if(strcmp(senha, "12345")){ goto menu; }
+       else{  system("cls", "color 4f");
+              printf("\n\n\n\n\n\n\n\n\n                               SENHA INCORRETA");
+              sleep(1);
+              goto user;}
 //============================================================================================================================================================
 //                                                                          MENU
 //============================================================================================================================================================
     menu:
-    system("color f0");
     system("cls");
     int menuop;
-    printf("\n\n\n\n\n                            __________MENU__________ ");
-    printf("\n\n                            1 - CADASTRO DE CLIENTES");
-    printf("\n                            2 - AGENDAMENTO");
-    printf("\n                            3 - RELATORIOS MEDICOS");
-    printf("\n                            4 - FUNCIONARIOS");
-    printf("\n                            5 - FATURAMENTO");
-    printf("\n                            6 - FEEDBACK");
-    printf("\n                            ________________________");
-    printf("\n\n                            DIGITE UMA OP플O: ");
+    printf("\n\n\n\n\n                            __________MENU__________ "
+    "\n\n                            1 - CADASTRO DE CLIENTES"
+    "\n                            2 - AGENDAMENTO"
+    "\n                            3 - RELATORIOS MEDICOS"
+    "\n                            4 - FUNCIONARIOS"
+    "\n                            5 - FATURAMENTO"
+    "\n                            6 - FEEDBACK"
+    "\n                            ________________________"
+    "\n\n                            DIGITE UMA OP플O: ");
     scanf("%i", &menuop);
     switch(menuop){
-     case 1:
-       goto submenu;
-       break;
-     case 2:
-       goto subagen;
-       break;
-     case 3:
-       goto subrela;
-       break;
-     case 4:
-       break;
-     case 5:
-       break;
-     case 6:
-       break;
-    }
+       case 1: goto submenu; break;
+       case 2: goto subagen; break;
+       case 3: goto subrela; break;
+       case 4: break;
+       case 5: break;
+       case 6: break;
+       default: goto menu; break; }
 //============================================================================================================================================================
 //                                                                 SISTEMA DE CADASTRO
 //============================================================================================================================================================
-    //SUBMENU
     submenu:
     system("cls");
     int opcad;
-    printf("\n\n\n\n\n                            _______CADASTRO_______ ");
-    printf("\n\n                            1 - CADASTRAR");
-    printf("\n                            2 - BUSCA");
-    printf("\n                            3 - EXCLUIR CADASTRO");
-    printf("\n                            4 - VOLTAR");
-    printf("\n                            ______________________");
-    printf("\n\n                            DIGITE UMA OP플O: ");
+    printf("\n\n\n\n\n                            _______CADASTRO_______ "
+    "\n\n                            1 - CADASTRAR"
+    "\n                            2 - BUSCA"
+    "\n                            3 - EXCLUIR CADASTRO"
+    "\n                            4 - VOLTAR"
+    "\n                            ______________________"
+    "\n\n                            DIGITE UMA OP플O: ");
     scanf("%i", &opcad);
     switch(opcad){
-       case 1:
-         goto cadastro;
-         break;
-       case 2:
-         goto busca;
-         break;
-       case 3:
-         goto excluird;
-         break;
-       case 4:
-         goto menu;
-         break;
-       default:
-         printf("\n                            INVALIDO");
-         sleep(2);
-         goto submenu;
-         break;
-    }
+       case 1: goto cadastro; break;
+       case 2: goto busca; break;
+       case 3: goto excluird; break;
+       case 4: goto menu; break;
+       default: printf("\n                            INVALIDO");
+                sleep(2);
+                goto submenu; break; }
     //CADASTRO
     cadastro:
     system("cls");
@@ -103,7 +80,7 @@ int main(){
 
     printf("\n\n___________________________________CADASTRAR____________________________________");
        //NOME
-        printf("\n\n                  NOME: ");
+       printf("\n\n                  NOME: ");
        scanf("%s", &n);
        file = fopen(n, "wb");
 
@@ -154,17 +131,11 @@ int main(){
     printf("\n\n________________________________________________________________________________");
         printf("\n               DIGITE 1 PARA VOLTAR OU 2 PARA NOVA BUSCA ");
         scanf("%i", &opbusca);
-        switch(opbusca){
-         case 1:
-           goto menu;
-         break;
-         case 2:
-           goto busca;
-         break;
-         default:
-           goto menu;
-         break;
-        }
+         switch(opbusca){
+            case 1: goto menu; break;
+            case 2: goto busca; break;
+            default: goto menu; break; }
+
         fclose(file);
       //EXCLUIR CADASTRO
       excluird:
@@ -172,11 +143,11 @@ int main(){
       int del;
       FILE *fp;
       char nome[100];
-        printf("\n\n________________________________EXCLUIR DADOS____________________________________");
-        printf("\n              AGENDAMENTO - NOME  E DATA ");
-        printf("\n              CADASTRO - APENAS O NOME ");
-        printf("\n              RELATORIO - NOME + 'R'");
-        printf("\n\n              DIGITE O NOME PARA DELETAR: ");
+        printf("\n\n________________________________EXCLUIR DADOS____________________________________"
+        "\n              AGENDAMENTO - NOME  E DATA
+        "\n              CADASTRO - APENAS O NOME "
+        "\n              RELATORIO - NOME + 'R'"
+        "\n\n              DIGITE O NOME PARA DELETAR: ");
         scanf("%s", &nome);
 
       fp = fopen(nome, "w");
@@ -186,62 +157,45 @@ int main(){
 
       del = remove(nome);
 
-      if(del == NULL) {
-      printf("\n              DADOS DELETADOS COM SUCESSO");
-      } else {
-      printf("\n              ERRO, DADOS NAO EXISTENTE");
-      }
-       //LOOP EXCLUIR
+      if(del == NULL) { printf("\n              DADOS DELETADOS COM SUCESSO");}
+       else { printf("\n              ERRO, DADOS NAO EXISTENTE"); }
+
       int opdel;
-       printf("\n\n________________________________________________________________________________");
-       printf("\n\n               DIGITE 1 PARA VOLTAR: ");
+       printf("\n\n________________________________________________________________________________"
+              "\n\n               DIGITE 1 PARA VOLTAR: ");
+
        scanf(" %c", &opdel);
-      switch(opdel){
-      case 1:
-        goto menu;
-        break;
-      default:
-        goto menu;
-        break;
-    }
+        switch(opdel){
+           case 1: goto menu; break;
+           default: goto menu; break; }
 //============================================================================================================================================================
 //                                                                       AGENDAMENTO
 //============================================================================================================================================================
     subagen:
     system("cls");
     int opagen;
-    printf("\n\n\n\n\n                            _______AGENDAMENTO_______ ");
-    printf("\n\n                            1 - AGENDAR");
-    printf("\n                            2 - BUSCA");
-    printf("\n                            3 - CANCELAR AGENDAMENTO");
-    printf("\n                            4 - VOLTAR");
-    printf("\n                            _________________________");
-    printf("\n\n                             DIGITE UMA OP플O: ");
+    printf("\n\n\n\n\n                            _______AGENDAMENTO_______ "
+    "\n\n                            1 - AGENDAR"
+    "\n                            2 - BUSCA"
+    "\n                            3 - CANCELAR AGENDAMENTO"
+    "\n                            4 - VOLTAR"
+    "\n                            _________________________"
+    "\n\n                             DIGITE UMA OP플O: ");
     scanf("%i", &opagen);
-    switch(opagen){
-      case 1:
-        goto agendar;
-        break;
-      case 2:
-        goto busca;
-        break;
-      case 3:
-        goto excluird;
-        break;
-      case 4:
-        goto menu;
-        break;
-      default:
-        printf("\n               ESCOLHA UMA OP플O VALIDA");
-        goto subagen;
-        break;
-    }
+     switch(opagen){
+        case 1: goto agendar; break;
+        case 2: goto busca; break;
+        case 3: goto excluird; break;
+        case 4: goto menu; break;
+        default:
+          printf("\n               ESCOLHA UMA OP플O VALIDA");
+          goto subagen; break; }
+
     //AGENDAMENTO
     agendar:
     system("cls");
     FILE *a;
     char nd[100], hr[12];
-
     printf("\n\n___________________________________AGENDAR______________________________________");
        //NOME E DATA
        printf("\n\n                  NOME E DATA: ");
@@ -267,37 +221,27 @@ int main(){
     subrela:
     system("cls");
     int oprela;
-    printf("\n\n\n\n\n                            _________________________ ");
-    printf("\n\n                            1 - CRIAR RELATORIO");
-    printf("\n                            2 - BUSCA");
-    printf("\n                            3 - EXCLUIR RELATORIO");
-    printf("\n                            4 - VOLTAR");
-    printf("\n                            _________________________");
-    printf("\n\n                             DIGITE UMA OP플O: ");
+    printf("\n\n\n\n\n                            _________________________ "
+    "\n\n                            1 - CRIAR RELATORIO"
+    "\n                            2 - BUSCA"
+    "\n                            3 - EXCLUIR RELATORIO"
+    "\n                            4 - VOLTAR"
+    "\n                            _________________________"
+    "\n\n                             DIGITE UMA OP플O: ");
     scanf("%i", &oprela);
-    switch(oprela){
-      case 1:
-        goto relatorios;
-        break;
-      case 2:
-        goto busca;
-        break;
-      case 3:
-        goto excluird;
-        break;
-      case 4:
-        goto menu;
-        break;
-      default:
-        printf("\n               ESCOLHA UMA OP플O VALIDA");
-        goto subrela;
-        break;
-    }
+     switch(oprela){
+        case 1: goto relatorios; break;
+        case 2: goto busca; break;
+        case 3: goto excluird; break;
+        case 4: goto menu; break;
+        default:
+          printf("\n               ESCOLHA UMA OP플O VALIDA");
+          goto subrela; break; }
+
     relatorios:
     system("cls");
     FILE *rel;
     char r[50], re[10000];
-
     printf("\n\n______________________________RELATORIOS MEDICOS________________________________");
        //NOME
        printf("\n\n  NOME COM UM 'R' NO FINAL: ");
