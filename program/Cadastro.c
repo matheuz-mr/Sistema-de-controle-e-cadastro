@@ -5,14 +5,16 @@ int main(){
     setlocale(LC_ALL, "");
 //==========================================================================LOGIN=============================================================================
 user:
-     system("mode con:cols=80");
+     system("color 0f");
+     system("mode con:cols=80 lines=30");
      system("cls");
      char user[4],senha[4];
      printf("\n\n\n\n\n\n\n                               ______LOGIN______"
             "\n\n                               USUARIO: ");
      scanf("%s", &user);
       if(strcmp(user, "admin") == 0){ goto senha; }
-        else{  system("color 4f", "cls");
+        else{  system("color 4f");
+               system("cls");
                printf("\n\n\n\n\n\n\n\n\n                               SENHA INCORRETA");
                sleep(1);
                goto user; }
@@ -20,12 +22,14 @@ senha:
      printf("\n                               SENHA: ");
      scanf("%i", &senha);
       if(strcmp(senha, "12345")){ goto menu; }
-       else{  system("cls", "color 4f");
+       else{  system("color 4f");
+              system("cls");
               printf("\n\n\n\n\n\n\n\n\n                               SENHA INCORRETA");
               sleep(1);
               goto user;}
 //=========================================================================MENU===============================================================================
 menu:
+    system("mode con:cols=80 lines=30");
     system("cls");
     int menuop;
     printf("\n\n\n\n\n                            __________MENU__________ "
@@ -106,10 +110,12 @@ cadastro:
 
 //BUSCA
 busca:
+       system("mode con:cols=80 lines=200");
        system("cls");
-       printf("\n\n_____________________________________BUSCA______________________________________");
-       printf("\n\n              AGENDAMENTO - NOME  E DATA ");
-       printf("\n              CADASTRO - APENAS O NOME ");
+       printf("\n\n_____________________________________BUSCA______________________________________"
+       "\n\n              AGENDAMENTO - MES REFERENTE "
+       "\n              CADASTRO - APENAS O NOME "
+       "\n________________________________________________________________________________");
        printf("\n\n              BUSCA: ");
        scanf("%s", &bus);
        file = fopen(bus, "r");
@@ -138,10 +144,11 @@ excluird:
       FILE *fp;
       char nome[100];
         printf("\n\n________________________________EXCLUIR DADOS____________________________________"
-        "\n              AGENDAMENTO - NOME  E DATA
+        "\n              AGENDAMENTO - MES"
         "\n              CADASTRO - APENAS O NOME "
         "\n              RELATORIO - NOME + 'R'"
-        "\n\n              DIGITE O NOME PARA DELETAR: ");
+        "\n\n              DIGITE O NOME PARA DELETAR: "
+        "\n________________________________________________________________________________");
         scanf("%s", &nome);
 
       fp = fopen(nome, "w");
@@ -168,17 +175,15 @@ subagen:
     int opagen;
     printf("\n\n\n\n\n                            _______AGENDAMENTO_______ "
     "\n\n                            1 - AGENDAR"
-    "\n                            2 - BUSCA"
-    "\n                            3 - CANCELAR AGENDAMENTO"
-    "\n                            4 - VOLTAR"
+    "\n                            2 - LISTAR AGENDAMENTO"
+    "\n                            3 - VOLTAR"
     "\n                            _________________________"
     "\n\n                             DIGITE UMA OPÇÃO: ");
     scanf("%i", &opagen);
      switch(opagen){
         case 1: goto agendar; break;
         case 2: goto busca; break;
-        case 3: goto excluird; break;
-        case 4: goto menu; break;
+        case 3: goto menu; break;
         default:
           printf("\n               ESCOLHA UMA OPÇÃO VALIDA");
           goto subagen; break; }
@@ -186,26 +191,32 @@ subagen:
 //AGENDAMENTO
 agendar:
     system("cls");
-    FILE *a;
-    char nd[100], hr[12];
-    printf("\n\n___________________________________AGENDAR______________________________________");
-       //NOME E DATA
-       printf("\n\n                  NOME E DATA: ");
-       scanf("%s", &nd);
-       a = fopen(nd, "wb");
+    char nm[100], dia[100], horario[100], mes[100];
+    FILE *p;
+    printf("\n\n___________________________________AGENDAR______________________________________"
+    "\n\n     -EM CASO DE REMARCAÇAO DE AGENDAMENTO DIGITE REMARCADO JUNTO DO HORARIO"
+    "\n________________________________________________________________________________\n\n     MES: ");
+    scanf("%s", &mes);
 
-       fprintf(a,"\n               NOME E DATA: ");
-       fprintf(a, nd);
-       //HORARIO
-       printf("\n                  HORARIO: ");
-       scanf("%s", &hr);
-       fprintf(a,"\n               HORARIO: ");
-       fprintf(a, hr);
+      p = fopen(mes, "a");
+      printf("\n     NOME: ");
+      scanf("%s", &nm);
+      printf("\n     DIA: ");
+      scanf("%s", &dia);
+      printf("\n     HORARIO: ");
+      scanf("%s", &horario);
 
-       fclose(a);
-       sleep(1);
-       goto submenu;
+      fprintf(p,"\n     NOME: ");
+      fprintf(p, nm);
+      fprintf(p,"          DIA: ");
+      fprintf(p,     dia);
+      fprintf(p,"          HORARIO: ");
+      fprintf(p,     horario);
+      fprintf(p, "\n");
 
+      fclose(p);
+      sleep(1);
+      goto subagen;
 //=====================================================================RELATORIO MEDICO=======================================================================
 //SUBMENU RELATORIOS
 subrela:
