@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
 
-//FUN플O LOGIN
+//FUN플O LOGIN __________________________________________________________________________________
 char login(){
    setlocale(LC_ALL, "");
    inicio:
@@ -9,37 +9,24 @@ char login(){
      system("color 0f");
      system("mode con:cols=80 lines=30");
 
-     char user[4], s[4];
+     char user[4], senha[4], s, u;
 
      printf("\n\n\n\n\n\n\n                               ______LOGIN______"
             "\n\n                               USUARIO: ");
      scanf("%s", &user);
-
-
-
-     if(strcmp(user, "admin") == 0){
-         goto senha;
-         }
+     printf("\n                               SENHA: ");
+     scanf("%s", &senha);
+     u = strcmp(user, "admin" );
+     s = strcmp(senha, "12345");
+     if(u && s == 0){
+         return 0; }
      else{  system("color 4f");
             system("cls");
             printf("\n\n\n\n\n\n\n\n\n                           USUARIO OU SENHA INCORRETO");
             sleep(1);
             goto inicio; }
-   senha:
-      printf("\n                               SENHA: ");
-     scanf("%s", &s);
-     if(strcmp(s, "12345") == 0){
-         return 0;
-         }
-     else{  system("color 4f");
-            system("cls");
-            printf("\n\n\n\n\n\n\n\n\n                           USUARIO OU SENHA INCORRETO");
-            sleep(1);
-            goto inicio; }
-
 }
-
-//FUN플O CADASTRO
+//FUN플O CADASTRO __________________________________________________________________________________
 cadastro(){
    setlocale(LC_ALL, "");
    system("cls");
@@ -78,8 +65,7 @@ cadastro(){
        sleep(1);
        return 0;
 }
-
-//FUN플O BUSCA
+//FUN플O BUSCA __________________________________________________________________________________
 busca(){
    setlocale(LC_ALL, "");
    busca:
@@ -111,11 +97,8 @@ busca(){
             case 1: goto busca; break;
             default: fclose(file);
                      return 0;; break; }
-
-
 }
-
-//FUN플O EXCLUIR
+//FUN플O EXCLUIR __________________________________________________________________________________
 excluir(){
       setlocale(LC_ALL, "");
       system("cls");
@@ -127,7 +110,8 @@ excluir(){
         "\n              CADASTRO - APENAS O NOME "
         "\n              RELATORIO - NOME + 'R'"
         "\n\n              DIGITE O NOME PARA DELETAR: "
-        "\n________________________________________________________________________________");
+        "\n________________________________________________________________________________"
+        "\n              ");
         scanf("%s", &nome);
 
       fp = fopen(nome, "w");
@@ -150,7 +134,7 @@ excluir(){
            default: return 0; break; }
 }
 
-//FUN플O AGENDAR
+//FUN플O AGENDAR __________________________________________________________________________________
 agendar(){
    setlocale(LC_ALL, "");
    system("cls");
@@ -182,7 +166,7 @@ agendar(){
       return 0;
 }
 
-//FUN플O RELATORIOS
+//FUN플O RELATORIOS __________________________________________________________________________________
 relatorios(){
    setlocale(LC_ALL, "");
    system("cls");
@@ -206,20 +190,46 @@ relatorios(){
        sleep(1);
        return 0;
 }
+//FUN플O FEEDBACK __________________________________________________________________________________
+feedback(){
+      setlocale(LC_ALL, "");
+   system("cls");
+    char nm[100], dia[100], coment[100], ava[100];
+    FILE *p;
+    printf("\n\n___________________________________FEEDBACK_____________________________________"
+    "\n\n     1 - MUITO BOM \n     2 - BOM \n     3 - REGULAR \n     4 - RUIM \n     5 - PESSIMO "
+    "\n________________________________________________________________________________"
+    "\n\n     AVALIA플O: ");
+    scanf("%s", &ava);
+
+      p = fopen(ava, "a");
+      printf("\n     NOME: ");
+      scanf("%s", &nm);
+      printf("\n     DIA: ");
+      scanf("%s", &dia);
+      printf("\n     COMENTARIOS: ");
+      scanf("%s", &coment);
+
+      fprintf(p,"          AVALIA플O: ");
+      fprintf(p,     ava);
+      fprintf(p,"\n     NOME: ");
+      fprintf(p, nm);
+      fprintf(p,"          DIA: ");
+      fprintf(p,     dia);
+      fprintf(p,"          HORARIO: ");
+      fprintf(p,     coment);
+      fprintf(p, "\n");
+
+      fclose(p);
+      sleep(1);
+      return 0;
+}
 
 int main(){
     setlocale(LC_ALL, "");
-//==========================================================================LOGIN=============================================================================
-  log:
-
-  if (login() == 0){
-   goto menu;
-  }
-  else{
-   goto log;
-  }
-
-//=========================================================================MENU===============================================================================
+//CHAMANDO LOGIN __________________________________________________________________________________
+   if (login() == 0){ goto menu; }
+//MENU PRINCIPAL__________________________________________________________________________________
 menu:
     system("mode con:cols=80 lines=30");
     system("cls");
@@ -240,9 +250,10 @@ menu:
        case 3: goto subrela; break;
        case 4: break;
        case 5: break;
-       case 6: break;
+       case 6: if (feedback() == 0){
+               goto menu; };  break;
        default: goto menu; break; }
-//=================================================================SISTEMA DE CADASTRO========================================================================
+//SUBMENU CADASTRO __________________________________________________________________________________
 submenu:
     system("cls");
     int opcad;
@@ -268,7 +279,7 @@ submenu:
        default: printf("\n                            INVALIDO");
                 sleep(2);
                 goto submenu; break; }
-//=======================================================================AGENDAMENTO==========================================================================
+//SUBMENU AGENDAMENTO __________________________________________________________________________________
 subagen:
     system("cls");
     int opagen;
@@ -290,8 +301,7 @@ subagen:
         default:
           printf("\n               ESCOLHA UMA OP플O VALIDA");
           goto subagen; break; }
-//=====================================================================RELATORIO MEDICO=======================================================================
-//SUBMENU RELATORIOS
+//SUBMENU RELATORIOS __________________________________________________________________________________
 subrela:
     system("cls");
     int oprela;
@@ -317,7 +327,7 @@ subrela:
         default:
           printf("\n               ESCOLHA UMA OP플O VALIDA");
           goto subrela; break; }
-//====================================================================FUNCIONARIOS============================================================================
+
 
 }
 
