@@ -2,7 +2,7 @@
 #include <locale.h>
 
 //FUN플O LOGIN __________________________________________________________________________________
-char login(){
+login(){
    setlocale(LC_ALL, "");
    inicio:
      system("cls");
@@ -26,7 +26,7 @@ char login(){
             sleep(1);
             goto inicio; }
 }
-//FUN플O CADASTRO __________________________________________________________________________________
+//FUN플O CADASTRO _______________________________________________________________________________
 cadastro(){
    setlocale(LC_ALL, "");
    system("cls");
@@ -209,6 +209,43 @@ relatorios(){
        sleep(1);
        return 0;
 }
+//FUN플O FUNCIONARIO __________________________________________________________________________________
+funcionarios(){
+   setlocale(LC_ALL, "");
+    system("cls");
+    char fun[100], dat[100], sal[100], nm[100], cpf[100];
+    FILE *p;
+    printf("\n\n_________________________________FUNCIONARIOS___________________________________"
+           "\n\n     NOME: ");
+    scanf("%s", &nm);
+
+    p = fopen(nm, "a");
+    printf("\n     FUN플O: ");
+    scanf("%s", &fun);
+    printf("\n     DATA DE INICIO: ");
+    scanf("%s", &dat);
+    printf("\n     SALARIO: ");
+    scanf("%s", &sal);
+    printf("\n     CPF: ");
+    scanf("%s", &cpf);
+
+    fprintf(p,"\n    NOME: ");
+    fprintf(p, nm);
+    fprintf(p,"\n    FUN플O: ");
+    fprintf(p, fun);
+    fprintf(p,"         DATA DE INICIO: ");
+    fprintf(p, dat);
+    fprintf(p,"         SALARIO: ");
+    fprintf(p, sal);
+    fprintf(p,"         CPF: ");
+    fprintf(p, cpf);
+
+    fprintf(p, "\n");
+
+    fclose(p);
+    sleep(1);
+    return 0;
+}
 //FUN플O FATURAMENTO __________________________________________________________________________________
 faturamento(){
   setlocale(LC_ALL, "");
@@ -282,35 +319,40 @@ menu:
     system("mode con:cols=80 lines=30");
     system("cls");
     int menuop;
-    printf("\n\n\n\n\n                            __________MENU__________ "
-    "\n\n                            1 - CADASTRO DE CLIENTES"
-    "\n                            2 - AGENDAMENTO"
-    "\n                            3 - RELATORIOS MEDICOS"
-    "\n                            4 - FUNCIONARIOS"
-    "\n                            5 - FATURAMENTO"
-    "\n                            6 - FEEDBACK"
-    "\n                            ________________________"
+    printf("\n\n\n\n\n                            __________MENU___________ "
+    "\n\n                            [1]-CADASTRAR FUNCIONARIO"
+    "\n                            [2]-CADASTRO DE CLIENTES"
+    "\n                            [3]-RELATORIOS MEDICOS"
+    "\n                            [4]-AGENDAMENTO"
+    "\n                            [5]-FATURAMENTO"
+    "\n                            [6]-FEEDBACK"
+    "\n                            [7]-BUSCA"
+    "\n                            _________________________"
     "\n\n                            DIGITE UMA OP플O: ");
     scanf("%i", &menuop);
     switch(menuop){
-       case 1: goto submenu; break;
-       case 2: goto subagen; break;
+       case 1: if (funcionarios() == 0){
+               goto menu; };break;
+       case 2: goto submenu; break;
        case 3: goto subrela; break;
-       case 4: break;
+       case 4: goto subagen; break;
        case 5: if (faturamento() == 0){
                goto menu; };break;
        case 6: if (feedback() == 0){
                goto menu; };  break;
+       case 7: if (busca() == 0){
+               goto menu; };  break;
        default: goto menu; break; }
 //SUBMENU CADASTRO __________________________________________________________________________________
 submenu:
+    system("mode con:cols=80 lines=30");
     system("cls");
     int opcad;
     printf("\n\n\n\n\n                            _______CADASTRO_______ "
-    "\n\n                            1 - CADASTRAR"
-    "\n                            2 - BUSCA"
-    "\n                            3 - EXCLUIR CADASTRO"
-    "\n                            4 - VOLTAR"
+    "\n\n                            [1]-CADASTRAR"
+    "\n                            [2]-BUSCA"
+    "\n                            [3]-EXCLUIR CADASTRO"
+    "\n                            [4]-VOLTAR"
     "\n                            ______________________"
     "\n\n                            DIGITE UMA OP플O: ");
     scanf("%i", &opcad);
@@ -330,12 +372,13 @@ submenu:
                 goto submenu; break; }
 //SUBMENU AGENDAMENTO __________________________________________________________________________________
 subagen:
+    system("mode con:cols=80 lines=30");
     system("cls");
     int opagen;
     printf("\n\n\n\n\n                            _______AGENDAMENTO_______ "
-    "\n\n                            1 - AGENDAR"
-    "\n                            2 - LISTAR AGENDAMENTO"
-    "\n                            3 - VOLTAR"
+    "\n\n                            [1]-AGENDAR"
+    "\n                            [2]-LISTAR AGENDAMENTO"
+    "\n                            [3]-VOLTAR"
     "\n                            _________________________"
     "\n\n                             DIGITE UMA OP플O: ");
     scanf("%i", &opagen);
@@ -353,13 +396,14 @@ subagen:
           goto subagen; break; }
 //SUBMENU RELATORIOS __________________________________________________________________________________
 subrela:
+    system("mode con:cols=80 lines=30");
     system("cls");
     int oprela;
     printf("\n\n\n\n\n                            _________________________ "
-    "\n\n                            1 - CRIAR RELATORIO"
-    "\n                            2 - BUSCA"
-    "\n                            3 - EXCLUIR RELATORIO"
-    "\n                            4 - VOLTAR"
+    "\n\n                            [1]-CRIAR RELATORIO"
+    "\n                            [2]-BUSCA"
+    "\n                            [3]-EXCLUIR RELATORIO"
+    "\n                            [4]-VOLTAR"
     "\n                            _________________________"
     "\n\n                             DIGITE UMA OP플O: ");
     scanf("%i", &oprela);
@@ -377,8 +421,6 @@ subrela:
         default:
           printf("\n               ESCOLHA UMA OP플O VALIDA");
           goto subrela; break; }
-
-
 }
 
 
