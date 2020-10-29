@@ -162,10 +162,29 @@ agendar(){
       fprintf(p, "\n");
 
       fclose(p);
-      sleep(1);
       return 0;
 }
+//FUN플O VALOR DA CONSULTA __________________________________________________________________________________
+valor(){
+    setlocale(LC_ALL, "");
+    system("cls");
+     char mss[100], val;
+    FILE *p;
+    printf("\n\n__________________________________PAGAMENTO_____________________________________"
+    "\n\n     DIGITE O MES EM SEGUIDA UM F\n     ex: janeirof"
+    "\n________________________________________________________________________________"
+    "\n\n     MES: ");
+    scanf("%s", &mss);
+    p = fopen(mss, "a");
 
+    printf("\n     VALOR DA CONSULTA: ");
+    scanf("%s", &val);
+
+    fprintf(p, &val);
+    fprintf(p, "\n");
+    fclose(p);
+    return 0;
+}
 //FUN플O RELATORIOS __________________________________________________________________________________
 relatorios(){
    setlocale(LC_ALL, "");
@@ -189,6 +208,35 @@ relatorios(){
        fclose(rel);
        sleep(1);
        return 0;
+}
+//FUN플O FATURAMENTO __________________________________________________________________________________
+faturamento(){
+  setlocale(LC_ALL, "");
+  system("cls");
+  char n[100];
+   printf("\n\n_________________________________FATURAMENTO____________________________________"
+   "\n\n     DIGITE O MES EM SEGUIDA UM F\n     ex: janeirof"
+   "\n________________________________________________________________________________"
+   "\n\n    Didite o mes: ");
+   scanf("%s", &n);
+   FILE *entrada;
+   entrada = fopen (n, "r");
+   if (entrada == NULL) {
+      printf ("\n     NAO ENCONTRADO O ARQUIVO!\n");
+   }
+   float soma = 0;
+   while (!feof( stdin )) {
+      int x;
+
+      if (fscanf (entrada, "%i", &x) != 1) break;
+      soma += x;
+   }
+   fclose (entrada);
+   printf ("\n     O FATURAMENTO DO MES REFERENTE FOI DE R$ %.2f\n", soma);
+   int a;
+   printf("\n     DIGITE ALGO PARA SAIR: ");
+   scanf("%i", &a);
+   return 0;
 }
 //FUN플O FEEDBACK __________________________________________________________________________________
 feedback(){
@@ -249,7 +297,8 @@ menu:
        case 2: goto subagen; break;
        case 3: goto subrela; break;
        case 4: break;
-       case 5: break;
+       case 5: if (faturamento() == 0){
+               goto menu; };break;
        case 6: if (feedback() == 0){
                goto menu; };  break;
        default: goto menu; break; }
@@ -292,10 +341,11 @@ subagen:
     scanf("%i", &opagen);
      switch(opagen){
         case 1: if (agendar() == 0){
-                goto submenu; };
+                if (valor() == 0){
+                goto subagen;}}
                 break;
         case 2: if (busca() == 0){
-                goto submenu; };
+                goto subagen; };
                 break;
         case 3: goto menu; break;
         default:
@@ -330,4 +380,5 @@ subrela:
 
 
 }
+
 
