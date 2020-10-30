@@ -169,20 +169,20 @@ valor(){
     setlocale(LC_ALL, "");
     system("cls");
      char mss[100], val;
-    FILE *p;
+    FILE *v;
     printf("\n\n__________________________________PAGAMENTO_____________________________________"
     "\n\n     DIGITE O MES EM SEGUIDA UM F\n     ex: janeirof"
     "\n________________________________________________________________________________"
     "\n\n     MES: ");
     scanf("%s", &mss);
-    p = fopen(mss, "a");
+    v = fopen(mss, "a");
 
     printf("\n     VALOR DA CONSULTA: ");
     scanf("%s", &val);
 
-    fprintf(p, &val);
-    fprintf(p, "\n");
-    fclose(p);
+    fprintf(v, &val);
+    fprintf(v, "\n");
+    fclose(v);
     return 0;
 }
 //FUNÇÃO RELATORIOS __________________________________________________________________________________
@@ -256,19 +256,19 @@ faturamento(){
    "\n________________________________________________________________________________"
    "\n\n    Didite o mes: ");
    scanf("%s", &n);
-   FILE *entrada;
-   entrada = fopen (n, "r");
-   if (entrada == NULL) {
+   FILE *v;
+   v = fopen (n, "r");
+   if (v == NULL) {
       printf ("\n     NAO ENCONTRADO O ARQUIVO!\n");
    }
    float soma = 0;
    while (!feof( stdin )) {
       int x;
 
-      if (fscanf (entrada, "%i", &x) != 1) break;
+      if (fscanf (v, "%i", &x) != 1) break;
       soma += x;
    }
-   fclose (entrada);
+   fclose (v);
    printf ("\n     O FATURAMENTO DO MES REFERENTE FOI DE R$ %.2f\n", soma);
    int a;
    printf("\n     DIGITE ALGO PARA SAIR: ");
