@@ -109,9 +109,7 @@ excluir(){
         "\n              AGENDAMENTO - MES"
         "\n              CADASTRO - APENAS O NOME "
         "\n              RELATORIO - NOME + 'R'"
-        "\n\n              DIGITE O NOME PARA DELETAR: "
-        "\n________________________________________________________________________________"
-        "\n              ");
+        "\n\n              DIGITE PARA DELETAR: ");
         scanf("%s", &nome);
 
       fp = fopen(nome, "w");
@@ -320,10 +318,10 @@ menu:
     system("cls");
     int menuop;
     printf("\n\n\n\n\n                            __________MENU___________ "
-    "\n\n                            [1]-CADASTRAR FUNCIONARIO"
-    "\n                            [2]-CADASTRO DE CLIENTES"
-    "\n                            [3]-RELATORIOS MEDICOS"
-    "\n                            [4]-AGENDAMENTO"
+    "\n\n                            [1]-CADASTRO DE CLIENTES"
+    "\n                            [2]-AGENDAMENTO"
+    "\n                            [3]-CADASTRAR FUNCIONARIO"
+    "\n                            [4]-RELATORIOS MEDICOS"
     "\n                            [5]-FATURAMENTO"
     "\n                            [6]-FEEDBACK"
     "\n                            [7]-BUSCA"
@@ -331,11 +329,12 @@ menu:
     "\n\n                            DIGITE UMA OPÇÃO: ");
     scanf("%i", &menuop);
     switch(menuop){
-       case 1: if (funcionarios() == 0){
+
+       case 1: goto submenu; break;
+       case 2: goto subagen; break;
+       case 3: if (funcionarios() == 0){
                goto menu; };break;
-       case 2: goto submenu; break;
-       case 3: goto subrela; break;
-       case 4: goto subagen; break;
+       case 4: goto subrela; break;
        case 5: if (faturamento() == 0){
                goto menu; };break;
        case 6: if (feedback() == 0){
