@@ -165,22 +165,48 @@ agendar(){
 //FUNÇÃO VALOR DA CONSULTA __________________________________________________________________________________
 valor(){
     setlocale(LC_ALL, "");
-    system("cls");
-     char mss[100], val;
-    FILE *v;
+    loop:
+   system("cls");
+   char val[20];
+   int op;
+    FILE *entrada;
     printf("\n\n__________________________________PAGAMENTO_____________________________________"
-    "\n\n     DIGITE O MES EM SEGUIDA UM F\n     ex: janeirof"
+    "\n\n                                 [1]-JANEIRO"
+    "\n                                 [2]-FEVEREIRO"
+    "\n                                 [3]-MARÇO"
+    "\n                                 [4]-ABRIL"
+    "\n                                 [5]-MAIO"
+    "\n                                 [6]-JUNHO"
+    "\n                                 [7]-JULHO"
+    "\n                                 [8]-AGOSTO"
+    "\n                                 [9]-SETEMBRO"
+    "\n                                 [10]-OUTUBRO"
+    "\n                                 [11]-NOVEMBRO"
+    "\n                                 [12]-DEZEMBRO"
     "\n________________________________________________________________________________"
     "\n\n     MES: ");
-    scanf("%s", &mss);
-    v = fopen(mss, "a");
+    scanf("%i", &op);
+    switch(op){
+    case 1:entrada = fopen("jan.dat", "a");break;
+    case 2: entrada = fopen("fev.dat", "a");break;
+    case 3: entrada = fopen("mar.dat", "a");break;
+    case 4: entrada = fopen("abr.dat", "a");break;
+    case 5: entrada = fopen("mai.dat", "a");break;
+    case 6: entrada = fopen("jun.dat", "a");break;
+    case 7: entrada = fopen("jul.dat", "a");break;
+    case 8: entrada = fopen("ago.dat", "a");break;
+    case 9: entrada = fopen("set.dat", "a");break;
+    case 10: entrada = fopen("out.dat", "a");break;
+    case 11: entrada = fopen("nov.dat", "a");break;
+    case 12: entrada = fopen("dez.dat", "a");break;
+    default: printf("\n                                OPÇÃO INVALIDA");sleep(1);goto loop;break;}
 
     printf("\n     VALOR DA CONSULTA: ");
     scanf("%s", &val);
 
-    fprintf(v, &val);
-    fprintf(v, "\n");
-    fclose(v);
+    fprintf(entrada, &val);
+    fprintf(entrada, "\n");
+    fclose(entrada);
     return 0;
 }
 //FUNÇÃO RELATORIOS __________________________________________________________________________________
@@ -246,16 +272,42 @@ funcionarios(){
 }
 //FUNÇÃO FATURAMENTO __________________________________________________________________________________
 faturamento(){
+  loop:
   setlocale(LC_ALL, "");
   system("cls");
-  char n[100];
-   printf("\n\n_________________________________FATURAMENTO____________________________________"
-   "\n\n     DIGITE O MES EM SEGUIDA UM F\n     ex: janeirof"
-   "\n________________________________________________________________________________"
-   "\n\n    Didite o mes: ");
-   scanf("%s", &n);
+  int op;
    FILE *v;
-   v = fopen (n, "r");
+   printf("\n\n_________________________________FATURAMENTO____________________________________"
+   "\n\n                                 [1]-JANEIRO"
+    "\n                                 [2]-FEVEREIRO"
+    "\n                                 [3]-MARÇO"
+    "\n                                 [4]-ABRIL"
+    "\n                                 [5]-MAIO"
+    "\n                                 [6]-JUNHO"
+    "\n                                 [7]-JULHO"
+    "\n                                 [8]-AGOSTO"
+    "\n                                 [9]-SETEMBRO"
+    "\n                                 [10]-OUTUBRO"
+    "\n                                 [11]-NOVEMBRO"
+    "\n                                 [12]-DEZEMBRO"
+    "\n________________________________________________________________________________"
+    "\n\n     MES: ");
+    scanf("%i", &op);
+    switch(op){
+    case 1: v = fopen("jan.dat", "r");break;
+    case 2: v = fopen("fev.dat", "r");break;
+    case 3: v = fopen("mar.dat", "r");break;
+    case 4: v = fopen("abr.dat", "r");break;
+    case 5: v = fopen("mai.dat", "r");break;
+    case 6: v = fopen("jun.dat", "r");break;
+    case 7: v = fopen("jul.dat", "r");break;
+    case 8: v = fopen("ago.dat", "r");break;
+    case 9: v = fopen("set.dat", "r");break;
+    case 10: v = fopen("out.dat", "r");break;
+    case 11: v = fopen("nov.dat", "r");break;
+    case 12: v = fopen("dez.dat", "r");break;
+    default: printf("\n                                OPÇÃO INVALIDA");sleep(1);goto loop;break;}
+
    if (v == NULL) {
       printf ("\n     NAO ENCONTRADO O ARQUIVO!\n");
    }
